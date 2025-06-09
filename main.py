@@ -32,7 +32,13 @@ def crear_mensaje(mensaje: Mensaje):
     mensajes_db.append(mensaje)
     return mensaje
 
-
+# Obtener mensaje por ID
+@app.get("/mensajes/{mensaje_id}", response_model=Mensaje)
+def obtener_mensaje(mensaje_id: int):
+    for mensaje in mensajes_db:
+        if mensaje.id == mensaje_id:
+            return mensaje
+    raise HTTPException(status_code=404, detail="Mensaje no encontrado")
 
 
 
