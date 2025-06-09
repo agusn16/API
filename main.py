@@ -40,7 +40,10 @@ def obtener_mensaje(mensaje_id: int):
             return mensaje
     raise HTTPException(status_code=404, detail="Mensaje no encontrado")
 
-
+# Muestra lista de mensajes
+@app.get("/mensajes/", response_model=list[Mensaje])
+def listar_mensajes():
+    return mensajes_db
 
 
 
